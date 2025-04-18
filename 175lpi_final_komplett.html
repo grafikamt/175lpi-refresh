@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet"/>
+<link href="https://fonts.cdnfonts.com/css/sf-pro-text" rel="stylesheet"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>175lpi - Layout, Satz, Reinzeichnung für anspruchsvolle Projekte</title>
+<style>
+
+    /* Font imports */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+    :root {
+    --dark-color: #342628;  /* Dark brown */
+    --medium-gray: #AAAA;
+    --light-gray: #F5F5F5;
+    --accent-color: #5A8100;  /* Olive green */
+    --accent-color-2: #FFB400;  /* Yellow accent */
+    --white: #FFFF;
+    --dark-bg: #1A1A1A;  /* Dunkelgrau für dunkle Bereiche */
+    }
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+    body {
+    font-family: 'SF Pro Text', 'Inter', sans-serif;
+    color: var(--dark-color);
+    line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5 {
+    font-family: 'SF Pro Display', sans-serif;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    }
+
+    h3 {
+    line-height: 1.3;  /* Reduzierter Zeilenabstand für Subheadlines */
+    }
+
+
+    p {
+    margin-bottom: 1.5rem;
+    }
+
+    a {
+    color: var(--dark-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    }
+
+    a:hover {
+    color: var(--accent-color);
+    }
+
+    .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    }
+
+    .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--accent-color);
+    color: var(--white);
+    border: none;
+    border-radius: 30px; /* Abgerundete Ecken für Buttons */
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+    background-color: #4a6b00; /* Darker green on hover */
+    transform: translateY(-2px);
+    color: var(--white); /* Weiße Schrift beim Hover beibehalten */
+    }
+
+    .btn-secondary {
+    background-color: var(--accent-color-2); /* Using yellow for secondary buttons */
+    color: var(--dark-color);
+    }
+
+    .btn-secondary:hover {
+    background-color: #e6a200; /* Darker yellow on hover */
+    color: var(--dark-color); /* Dunkle Schrift beim Hover beibehalten */
+    }
+
+    /* Header styles */
+    header {
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    }
+
+    .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    .logo {
+    display: flex;
+    align-items: center;
+    }
+
+    .logo img {
+    height: 40px;
+    width: auto;
+    }
+
+    nav ul {
+    display: flex;
+    list-style: none;
+    }
+
+    nav ul li {
+    margin-left: 30px;
+    }
+
+    /* Availability status */
+    .availability-status {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    }
+
+    .status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 10px;
+    }
+
+    .available {
+    background-color: var(--accent-color); /* Green */
+    }
+
+    .partially-available {
+    background-color: var(--accent-color-2); /* Yellow */
+    }
+
+    .not-available {
+    background-color: #95a5a6; /* Gray */
+    }
+
+    .status-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark-color);
+    }
+
+    /* Hero section */
+    .hero {
+    padding: 150px 0 100px;
+    background-color: #333301;
+    position: relative;
+    overflow: hidden;
+    color: var(--white);
+    }
+
+    .hero-content {
+    max-width: 600px;
+    position: relative;
+    z-index: 2;
+    }
+
+    .hero h1 {
+    font-size: 2.8rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;  /* Reduced space between headline and subheading */
+    }
+
+    .hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    }
+
+    /* Services section */
+    .services {
+    padding: 100px 0;
+    }
+
+    .section-title {
+    text-align: center;
+    margin-bottom: 60px;
+    }
+
+    .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    }
+
+    .service-card {
+    padding: 30px;
+    background-color: var(--light-gray);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border-top: 4px solid var(--accent-color);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .service-icon {
+    margin-bottom: 20px;
+    background-color: rgba(90, 129, 0, 0.1);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+    .service-icon svg {
+    width: 50px;
+    height: 50px;
+    }
+
+    .service-card h3 {
+    margin-bottom: 15px;
+    color: var(--accent-color);
+    }
+
+    /* About Me Section - Moderneres Design ohne Karten */
+    .about {
+    padding: 120px 0;
+    background-color: var(--white);
+    position: relative;
+    overflow: hidden;
+    }
+
+    .about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    }
+
+    .about-image {
+    position: relative;
+    }
+
+    .about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .about-image::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    top: 20px;
+    left: 20px;
+    z-index: -1;
+    }
+
+    .about-content h2 {
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    }
+
+    .about-content h2::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color-2);
+    bottom: -10px;
+    left: 0;
+    }
+
+    .about-content p {
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    }
+
+    .expertise-areas {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    }
+
+    .expertise-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: var(--light-gray);
+    padding: 15px;
+    border-radius: 8px;
+    flex: 1 1 calc(50% - 20px);
+    min-width: 200px;
+    }
+
+    .expertise-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(90, 129, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+    }
+
+    .expertise-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--accent-color);
+    }
+
+    .expertise-text {
+    font-weight: 500;
+    }
+
+    /* Portfolio section */
+    .portfolio {
+    padding: 120px 0;
+    background-color: var(--dark-bg);
+    color: var(--white);
+    }
+
+    .portfolio .section-title h2 {
+    color: var(--white);
+    }
+
+    .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 30px;
+    }
+
+    .portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    height: 300px;
+    background-color: var(--medium-gray);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    }
+
+    .portfolio-item:hover img {
+    transform: scale(1.05);
+    }
+
+    .portfolio-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, var(--dark-color), transparent);
+    color: var(--white);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+    transform: translateY(0);
+    }
+
+    /* Testimonials section - Aufgewertet */
+    .testimonials {
+    padding: 120px 0;
+    position: relative;
+    background-color: var(--white);
+    }
+
+    .testimonials-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    }
+
+    .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+    }
+
+    .testimonial-card {
+    background-color: var(--light-gray);
+    border-radius: 10px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+
+    .testimonial-quote {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+    }
+
+    .testimonial-quote::before {
+    content: '"';
+    position: absolute;
+    top: -40px;
+    left: -10px;
+    font-size: 120px;
+    color: rgba(90, 129, 0, 0.1);
+    font-family: 'Georgia', serif;
+    z-index: -1;
+    }
+
+    .testimonial-author {
+    font-weight: 500;
+    color: var(--accent-color);
+    }
+
+    /* CTA section */
+    .cta {
+    padding: 100px 0;
+    background-color: var(--dark-bg);
+    color: var(--white);
+    text-align: center;
+    }
+
+    .cta h2 {
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+    /* Footer */
+    footer {
+    padding: 80px 0 30px;
+    background-color: var(--light-gray);
+    }
+
+    .footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+    }
+
+    .footer-logo {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    }
+
+    .footer-links h4 {
+    margin-bottom: 20px;
+    }
+
+    .footer-links ul {
+    list-style: none;
+    }
+
+    .footer-links ul li {
+    margin-bottom: 10px;
+    }
+
+    .copyright {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid var(--medium-gray);
+    }
+
+    /* Accordion styles for service details */
+    .service-details-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding: 8px 0;
+    cursor: pointer;
+    color: var(--accent-color);
+    font-weight: 500;
+    border-top: 1px solid rgba(90, 129, 0, 0.2);
+    transition: all 0.3s ease;
+    }
+
+    .service-details-toggle:hover {
+    color: #4a6b00;
+    }
+
+    .toggle-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 18px;
+    font-weight: bold;
+    }
+
+    .service-details-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    }
+
+    .service-details-list {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+    }
+
+    .service-details-list li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    }
+
+    .service-details-list li:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+    .hero h1 {
+    font-size: 2rem;
+    }
+
+    .services-grid, .about-container, .testimonials-grid {
+    grid-template-columns: 1fr;
+    }
+
+    .portfolio-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    }
+
+    nav ul {
+    display: none; /* Mobile menu would be implemented with JavaScript */
+    }
+
+    .header-container {
+    flex-wrap: wrap;
+    }
+
+    .availability-status {
+    margin-left: 0;
+    margin-top: 10px;
+    }
+
+    .about-image::before {
+    display: none;
+    }
+
+    .expertise-areas {
+    flex-direction: column;
+    }
+
+    .expertise-item {
+    flex: 1 1 100%;
+    }
+    }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header>
+<div class="container header-container">
+<div class="logo">
+<img alt="175lpi Logo" src="logo_175lpi.png"/>
+</div>
+<nav>
+<ul>
+<li><a href="#services">Leistungen</a></li>
+<li><a href="#about">Über mich</a></li>
+<li><a href="#contact">Kontakt</a></li>
+</ul>
+</nav>
+<!-- Verfügbarkeitsstatus - Nur einen Status aktiv lassen, die anderen auskommentieren -->
+<div class="availability-status">
+<span class="status-dot available"></span>
+<span class="status-text">Verfügbar für neue Projekte</span>
+</div>
+<!-- Status: Teilweise verfügbar - auskommentiert
+    <div class="availability-status">
+    <span class="status-dot partially-available"></span>
+    <span class="status-text">Teilweise verfügbar</span>
+    </div>
+    -->
+<!-- Status: Ausgelastet - auskommentiert
+    <div class="availability-status">
+    <span class="status-dot not-available"></span>
+    <span class="status-text">Aktuell ausgelastet</span>
+    </div>
+    -->
+</div>
+</header>
+<!-- Hero Section with Background Image -->
+<section class="hero">
+<div class="container">
+<div class="hero-content">
+<h1>Layout, Satz, Reinzeichnung für Projekte mit Wirkung</h1>
+<p>Professionelle Gestaltungslösungen für Print und Digital</p>
+<a class="btn" href="#contact">Projekt besprechen</a>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="services" id="services">
+<div class="container">
+<div class="section-title">
+<h2>Leistungen</h2>
+</div>
+<div class="services-grid">
+<div class="service-card">
+<div class="service-icon">
+<!-- A4 Icon für Satz, Reinzeichnung -->
+<svg viewbox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+<rect fill="none" height="50" stroke="#5A8100" stroke-width="2" width="40" x="10" y="5"></rect>
+<path d="M50 5 L50 15 L40 5 Z" fill="#5A8100" stroke="#5A8100" stroke-width="2"></path>
+<line stroke="#5A8100" stroke-width="1.5" x1="15" x2="45" y1="15" y2="15"></line>
+<line stroke="#5A8100" stroke-width="1.5" x1="15" x2="45" y1="25" y2="25"></line>
+<line stroke="#5A8100" stroke-width="1.5" x1="15" x2="45" y1="35" y2="35"></line>
+<line stroke="#5A8100" stroke-width="1.5" x1="15" x2="35" y1="45" y2="45"></line>
+</svg>
+</div>
+<h3>Layout, Satz, Reinzeichnung</h3>
+<p>Von der Idee zum druckfertigen Ergebnis: Hier entstehen Printprodukte mit Präzision und kreativem Gespür. Ob Broschüre, Katalog oder Geschäftsbericht – das Ergebnis überzeugt durch klare Struktur, optimale Lesbarkeit und eine ansprechende visuelle Hierarchie.</p>
+<div aria-expanded="false" class="service-details-toggle">
+<span>Leistungen im Detail</span>
+<span class="toggle-icon">+</span>
+</div>
+<div class="service-details-content">
+<p>Mit über 20 Jahren Erfahrung in der Druckvorstufe garantiere ich technisch einwandfreie Ergebnisse, die auch höchsten Qualitätsansprüchen gerecht werden.</p>
+<ul class="service-details-list">
+<li><strong>Professionelles Layout:</strong> Maßgeschneiderte Gestaltungskonzepte für Broschüren, Magazine, Kataloge und Geschäftsberichte</li>
+<li><strong>Typografisch durchdachter Satz:</strong> Perfekte Lesbarkeit durch optimale Schriftwahl, Zeilenabstände und Hierarchie</li>
+<li><strong>Präzise Reinzeichnung:</strong> Druckfertige Daten nach höchsten Standards der Druckvorstufe</li>
+<li><strong>Barrierefreie PDF-Dokumente:</strong> Zugängliche Dokumente für alle Nutzergruppen</li>
+<li><strong>Bildbearbeitung und -optimierung:</strong> Professionelle Aufbereitung von Bildmaterial für optimale Druckergebnisse</li>
+<li><strong>Qualitätskontrolle:</strong> Sorgfältige Prüfung aller Daten vor der Produktion</li>
+</ul>
+</div>
+</div>
+<div class="service-card">
+<div class="service-icon">
+<!-- Landingpage Icon -->
+<svg viewbox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+<rect fill="none" height="50" stroke="#5A8100" stroke-width="2" width="50" x="5" y="5"></rect>
+<rect fill="#5A8100" height="8" stroke="#5A8100" stroke-width="2" width="50" x="5" y="5"></rect>
+<rect fill="none" height="30" stroke="#5A8100" stroke-width="2" width="20" x="8" y="18"></rect>
+<rect fill="none" height="15" stroke="#5A8100" stroke-width="2" width="20" x="32" y="18"></rect>
+<rect fill="none" height="10" stroke="#5A8100" stroke-width="2" width="20" x="32" y="38"></rect>
+<line stroke="#FFFF" stroke-width="1.5" x1="12" x2="48" y1="9" y2="9"></line>
+</svg>
+</div>
+<h3>Webdesign &amp; Entwicklung</h3>
+<p>Von der einzelnen Landingpage bis zur kompletten Website – ich gestalte und entwickle digitale Präsenzen, die überzeugen und funktionieren. Mit modernen Tools und schlanken Lösungen entstehen Websites, die nicht nur gut aussehen, sondern auch wartungsarm und benutzerfreundlich sind.</p>
+<div aria-expanded="false" class="service-details-toggle">
+<span>Leistungen im Detail</span>
+<span class="toggle-icon">+</span>
+</div>
+<div class="service-details-content">
+<p>Mit durchdachter Struktur, ansprechender Gestaltung und optimierter User Experience entstehen Websites, die nicht nur gut aussehen, sondern auch messbare Ergebnisse liefern – von der ersten Skizze bis zur fertigen Implementierung.</p>
+<ul class="service-details-list"><li><strong>Maßgeschneiderte Websites</strong>: Individuelle Webauftritte für Selbstständige und kleine Unternehmen</li><li><strong>Landingpages</strong>: Zielgerichtete Seiten für Kampagnen und spezifische Angebote</li><li><strong>Wartungsarme Lösungen</strong>: Websites ohne komplizierte CMS-Systeme, die kaum Updates benötigen</li><li><strong>Moderne Technologien</strong>: Umsetzung mit Webflow oder schlankem HTML/CSS/JS</li><li><strong>Responsive Design</strong>: Perfekte Darstellung auf allen Geräten</li><li><strong>Performance-Optimierung</strong>: Schnelle Ladezeiten und SEO-freundliche Struktur</li></ul>
+</div>
+</div>
+<div class="service-card">
+<div class="service-icon">
+<!-- Banner Icon - AKTUALISIERT -->
+<svg viewbox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+<!-- Äußerer Rahmen -->
+<rect fill="none" height="50" stroke="#5A8100" stroke-width="2" width="50" x="5" y="5"></rect>
+<!-- Oberer Banner-Bereich -->
+<rect fill="none" height="15" stroke="#5A8100" stroke-width="2" width="50" x="5" y="5"></rect>
+<!-- Horizontale Linie im oberen Bereich -->
+<line stroke="#5A8100" stroke-width="2" x1="15" x2="45" y1="12" y2="12"></line>
+<!-- Unterer linker Bereich -->
+<rect fill="none" height="30" stroke="#5A8100" stroke-width="2" width="20" x="5" y="25"></rect>
+<!-- Horizontale Linie im unteren linken Bereich -->
+<line stroke="#5A8100" stroke-width="2" x1="10" x2="20" y1="45" y2="45"></line>
+<!-- Unterer rechter Bereich -->
+<rect fill="none" height="30" stroke="#5A8100" stroke-width="2" width="25" x="30" y="25"></rect>
+<!-- Horizontale Linie im unteren rechten Bereich -->
+<line stroke="#5A8100" stroke-width="2" x1="35" x2="50" y1="40" y2="40"></line>
+</svg>
+</div>
+<h3>Banner-Anzeigen</h3>
+<p>Aufmerksamkeitsstarke Banner, die nicht übersehen werden. Ich gestalte digitale Werbemittel, die deine Zielgruppe gezielt ansprechen und deine Botschaft wirkungsvoll transportieren.</p>
+<div aria-expanded="false" class="service-details-toggle">
+<span>Leistungen im Detail</span>
+<span class="toggle-icon">+</span>
+</div>
+<div class="service-details-content">
+<p>Mit klarer Botschaft, überzeugender Gestaltung und optimaler technischer Umsetzung entstehen Werbemittel, die Klicks generieren und deine Kampagnenziele unterstützen – für maximale Sichtbarkeit in einem zunehmend visuell geprägten digitalen Umfeld.</p>
+<ul class="service-details-list">
+<li><strong>Kreative Konzeption:</strong> Entwicklung aufmerksamkeitsstarker Designs für verschiedene Formate und Plattformen</li>
+<li><strong>CI-konforme Gestaltung:</strong> Umsetzung nach bestehenden Corporate-Design-Vorgaben oder Entwicklung neuer visueller Ansätze</li>
+<li><strong>Animierte Banner:</strong> Bewegte Elemente für mehr Aufmerksamkeit und höhere Klickraten</li>
+<li><strong>Format-Optimierung:</strong> Anpassung für verschiedene Ausgabemedien und Platzierungen</li>
+<li><strong>Technisch einwandfreie Umsetzung:</strong> Einhaltung aller aktuellen Standards und Plattform-Spezifikationen</li>
+<li><strong>Performance-Tracking:</strong> Vorbereitung für einfaches Kampagnen-Tracking und Erfolgsmessung</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- About Me Section - Moderneres Design ohne Karten -->
+<section class="about" id="about">
+<div class="container">
+<div class="section-title">
+<h2>Über mich</h2>
+</div>
+<div class="about-container">
+<div class="about-image">
+<img alt="Thorsten Ullrich - Mediendesigner aus Wiesbaden" src="thorsten_ullrich.jpg"/>
+</div>
+<div class="about-content">
+<p><span style="font-size: 3rem; font-weight: 700; display: block; margin-bottom: 1rem;">Hey, ich bin Thorsten</span></p>
+<p>erfahrener Mediendesigner aus Wiesbaden. Meine Arbeit verbindet ansprechendes Design mit technischer Präzision. Daraus entstehen Lösungen, die nicht nur gut aussehen, sondern auch Ergebnisse liefern: mehr Aufmerksamkeit, höhere Engagement-Raten und letztendlich mehr Erfolg für meine Kunden.</p>
+<p>Mein Handwerk habe ich von der Pike auf gelernt: Nach meiner Ausbildung zum Mediengestalter in der Druckvorstufe einer Druckerei habe ich mich durch eine dreijährige Weiterbildung zum staatlich geprüften Techniker für Medien weiterqualifiziert.</p>
+</div>
+</div>
+</div>
+</section><section class="clients" style="padding: 80px 0; background-color: var(--light-gray);"><div class="container"><div class="clients-content" style="text-align: center; max-width: 800px; margin: 0 auto;"><h2 style="margin-bottom: 30px;">Erfahrung aus Projekten für:</h2><p class="clients-list" style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 0;">Nassauische Sparkasse, EON, Commerzbank, IKEA, Mayer Brown, Fraport</p></div></div></section>
+<!-- Portfolio Section -->
+<!-- Testimonials Section - Aufgewertet -->
+<section class="testimonials">
+<div class="container testimonials-container">
+<div class="section-title">
+<h2>Kundenstimmen</h2>
+</div>
+<div class="testimonials-grid"><div class="testimonial-card"><div class="testimonial-quote">"Thorsten begleitet uns seit vielen Jahren über alle Marken hinweg – mit einem sicheren Blick für die Gestaltung der einzelnen Markenbilder, viel Erfahrung und Verlässlichkeit. Die Zusammenarbeit ist nicht nur professionell, sondern auch menschlich sehr angenehm – das schätze ich besonders."</div><div class="testimonial-author">Charlotte Fritsch, Marketingmanagerin TALENTUS GmbH</div></div><div class="testimonial-card"><div class="testimonial-quote">"Wir arbeiten schon seit vielen Jahren mit 175lpi vertrauensvoll zusammen. Das letzte Projekt war der notwendige Facelift unserer Homepage, die Thorsten mit seinem Team vollkommen neu gestaltet hat. Ein moderner, zeitgemäßer Look, eine intuitive Navigation, alles perfekt."</div><div class="testimonial-author">Thomas Radler, Inhaber Thorafilm</div></div><div class="testimonial-card"><div class="testimonial-quote">"Wir arbeiten mit Herrn Ullrich von 175lpi schon langjährig zusammen und haben sehr gute Erfahrungen mit ihm gemacht. Ich empfehle ihn auf jeden Fall weiter, wenn jemand gesucht wird, der 100 Prozent zuverlässig ist und auf die Kundenwünsche eingeht. Höchst professionell und kreativ bearbeitet er unsere zahlreichen Projekte und liefert immer on time ab."</div><div class="testimonial-author">Sandra Haertel, Geschäftsleiterin ppa. TALENTUS GmbH</div></div></div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="cta" id="contact">
+<div class="container">
+<h2>Dein Projekt verdient eine erstklassige Umsetzung. <br/>
+    Lass uns gemeinsam Werte schaffen.</h2>
+<a class="btn" href="/cdn-cgi/l/email-protection#92fbfcf4fdd2a3a5a7fee2fbbcf6f7">Kontakt aufnehmen</a>
+</div>
+</section>
+<!-- Footer -->
+<footer>
+<div class="container">
+<div class="footer-container">
+<div class="footer-info">
+<div class="footer-logo">
+<img alt="175lpi Logo" src="logo_175lpi.png" style="height: 30px; width: auto;"/>
+</div>
+<p>Professionelle Gestaltungslösungen aus Wiesbaden für Print und Digital. Seit über 20 Jahren.</p>
+</div>
+<div class="footer-links">
+<h4>Leistungen</h4>
+<ul>
+<li><a href="#services">Layout, Satz, Reinzeichnung</a></li>
+<li><a href="#services">Landingpages</a></li>
+<li><a href="#services">Banner-Anzeigen</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h4>Rechtliches</h4>
+<ul>
+<li><a href="#">Impressum</a></li>
+<li><a href="#">Datenschutz</a></li>
+</ul>
+</div>
+<div class="footer-contact">
+<h4>Kontakt</h4>
+<p>Thorsten Ullrich<br/>
+    Rothstr. 7<br/>
+    65195 Wiesbaden</p>
+<p><a href="/cdn-cgi/l/email-protection#1b72757d745b2a2c2e776b72357f7e"><span class="__cf_email__" data-cfemail="2c45424a436c1d1b19405c45024849">[email protected]</span></a></p>
+</div>
+</div>
+<div class="copyright">
+<p>© 2025 175lpi. Alle Rechte vorbehalten.</p>
+</div>
+</div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+document.addEventListener('DOMContentLoaded', function() {
+    const accordionToggles = document.querySelectorAll('.service-details-toggle');
+
+    accordionToggles.forEach(toggle => {
+    toggle.addEventListener('click', function() {
+    const detailsContent = this.nextElementSibling;
+    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+    // Toggle the current accordion
+    this.setAttribute('aria-expanded', !isExpanded);
+    detailsContent.style.maxHeight = isExpanded ? '0' : detailsContent.scrollHeight + 'px';
+    this.querySelector('.toggle-icon').textContent = isExpanded ? '+' : '−';
+
+    // Optional: Close other accordions
+    // accordionToggles.forEach(otherToggle => {
+    //    if (otherToggle !== this) {
+    //    otherToggle.setAttribute('aria-expanded', 'false');
+    //    otherToggle.nextElementSibling.style.maxHeight = '0';
+    //    otherToggle.querySelector('.toggle-icon').textContent = '+';
+    //    }
+    // });
+    });
+    });
+});
+</script>
+</body>
+</html>
